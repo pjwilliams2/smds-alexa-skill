@@ -15,7 +15,9 @@
     "SMDS"
   ],
   "author": "Patrick Williams",
-  "contributors": ["https://github.com/pjwilliams2/smds-alexa-skill/graphs/contributors"],
+  "contributors": [
+    "https://github.com/pjwilliams2/smds-alexa-skill/graphs/contributors"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pjwilliams2/smds-alexa-skill/issues"
