@@ -1,0 +1,35 @@
+{
+  "name": "ShitMyDadSaysAlexaSkill",
+  "version": "1.0.0",
+  "description": "Lambda function for Alexa Skill: Shit My Dad Says. Alexa skill for reading quotes from the @ShitMyDadSays Twitter account timeline",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjwilliams2/smds-alexa-skill.git"
+  },
+  "keywords": [
+    "AWS Lambda",
+    "Alexa",
+    "skill",
+    "Shit My Dad Says",
+    "SMDS"
+  ],
+  "author": "Patrick Williams",
+  "contributors": ["https://github.com/pjwilliams2/smds-alexa-skill/graphs/contributors"],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pjwilliams2/smds-alexa-skill/issues"
+  },
+  "homepage": "https://github.com/pjwilliams2/smds-alexa-skill",
+  "dependencies": {
+    "alexa-sdk": "latest",
+    "base-64": "^0.1.0",
+    "bluebird": "^3.5.0",
+    "dotenv": "^4.0.0",
+    "lodash": "^4.17.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "twitter": "^1.7.1",
+    "utf8": "^2.1.2"
+  }
+}
