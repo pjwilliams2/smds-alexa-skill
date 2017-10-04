@@ -4,11 +4,38 @@ const request = require('request-promise');
 const utf8 = require('utf8');
 const base64 = require('base-64');
 const twitter = require('twitter');
+const Promise = require('bluebird');
+const _ = require('lodash');
 const keys = {
     consumer_key: process.env.TWTR_API_CONSUMER_KEY,
     consumer_secret: process.env.TWTR_API_CONSUMER_SECRET,
     bearer_token: ''
 };
+
+function getTweets(twitterHandle){
+    return createTwitterClient()
+        .then((client) => {
+            let getAsync = Promise.promisify(client.get);
+            return getAsync.call(client, 'statuses/user_timeline', { screen_name: twitterHandle, count: 200 })
+                .then((tweets) => {
+                    console.log('Number of tweets: ' + tweets.length);
+                    const tweetsArr = [];
+
+                    _.forEach(tweets, (tweet) => {
+                        //remove web url portions of the tweet
+                        let index = tweet.text.indexOf('http') > 0 ? tweet.text.indexOf('http') : tweet.text.length;
+                        tweetsArr.push(tweet.text.substring(0, index - 1));
+                    });
+        
+                    if(process.env.NODE_ENV !== 'prod'){
+                        console.log('Tweets length: ' + tweetsArr.length);
+                        console.log('Sample tweet: ' + tweetsArr[33]);
+                    }
+
+                    return tweetsArr;
+                });
+        });
+}
 
 function createTwitterClient(){
     return getBearerToken()
@@ -55,5 +82,5 @@ function getTokenRequestOptions(){
 }
 
 module.exports = {
-    createTwitterClient: createTwitterClient
+    getTweets: getTweets
 }

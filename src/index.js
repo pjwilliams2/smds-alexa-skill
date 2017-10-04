@@ -6,12 +6,9 @@ const result = require('dotenv').config({ path: path.join(__dirname, '.env')});
 
 if(result.error) throw result.error;
 
-var Promise = require('bluebird');
 const Alexa = require('alexa-sdk');
-const _ = require('lodash');
 const utilities = require('./utilities');
 const APP_ID = process.env.ALEXA_APP_ID;
-const q = { screen_name: process.env.TWTR_HANDLE, count: 200 };
 
  // define messages to be used as responses to the user
 const languageStrings = {
@@ -74,29 +71,8 @@ const handlers = {
     }
 }
 
-function loadTweets(){
-    return utilities.createTwitterClient()
-        .then((client) => {
-            let getAsync = Promise.promisify(client.get);
-            return getAsync.call(client, 'statuses/user_timeline', q)
-                .then((tweets) => {
-                    console.log('Number of tweets: ' + tweets.length);
-        
-                    _.forEach(tweets, (tweet) => {
-                        languageStrings['en-US'].translation.tweets.push(tweet.text);
-                    });
-        
-                    if(process.env.NODE_ENV !== 'prod'){
-                        console.log('Tweets length: ' + languageStrings['en-US'].translation.tweets.length);
-                        console.log('Sample tweet: ' + languageStrings['en-US'].translation.tweets[33]);
-                    }
-                });
-        });
-}
-
-
 let tweetsAreLoaded = false;
-exports.handler = function(event, context, callback) {
+// exports.handler = function(event, context, callback) {
     function executeAlexa(){
         let alexa = Alexa.handler(event, context);
         alexa.APP_ID = APP_ID;
@@ -109,8 +85,9 @@ exports.handler = function(event, context, callback) {
     if(tweetsAreLoaded){
         executeAlexa();
     } else {
-        loadTweets()
-        .then(() => {
+        utilities.getTweets(process.env.TWTR_HANDLE)
+        .then((tweets) => {
+            languageStrings['en-US'].translation.tweets = tweets;
             tweetsAreLoaded = true;
             executeAlexa();
         })
@@ -118,7 +95,7 @@ exports.handler = function(event, context, callback) {
             console.log(`Error retrieving tweets: ${err.message}`);
         });
     }
-};
+// };
 
 
 
