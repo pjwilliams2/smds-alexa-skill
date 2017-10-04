@@ -34,6 +34,12 @@ const handlers = {
     'WelcomeIntent': function(){
         this.emit('ReadQuote');
     },
+    'AMAZON.YesIntent': function(){
+        this.emit('ReadQuote');
+    },
+    'AMAZON.MoreIntent': function(){
+        this.emit('ReadQuote');
+    },
     'ReadQuote': function(){
         const tweets = this.t('tweets');
         const tweetIndex = Math.round(Math.random() * tweets.length);
@@ -43,22 +49,16 @@ const handlers = {
 
         this.emit(':ask', outputSpeech, repromptSpeech);
     },
-    'AMAZON.YesIntent': function(){
-        this.emit('ReadQuote');
-    },
-    'AMAZON.MoreIntent': function(){
-        this.emit('ReadQuote');
+    'AMAZON.HelpIntent': function(){
+        const output = this.t('HELP_MESSAGE');
+        const reprompt = this.t('HELP_MESSAGE');
+        this.emit(':ask', output, reprompt);
     },
     'AMAZON.CancelIntent': function(){
         this.emit('Exit');
     },
     'AMAZON.StopIntent': function(){
         this.emit('Exit');
-    },
-    'AMAZON.HelpIntent': function(){
-        const output = this.t('HELP_MESSAGE');
-        const reprompt = this.t('HELP_MESSAGE');
-        this.emit(':ask', output, reprompt);
     },
     'SessionEndedRequest': function(){
         this.emit('Exit');
