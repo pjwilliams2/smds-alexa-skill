@@ -18,8 +18,8 @@ const languageStrings = {
     'en-US': {
         'translation': {
             'tweets': [],
-            'TWEET_MESSAGE': "Here's some shit my dad said: ",
-            'HELP_MESSAGE': 'You can say tell me shit my dad says or you can say exit... ',
+            'TWEET_MESSAGE': "Here's something my dad said: ",
+            'HELP_MESSAGE': 'You can say tell me a quote or you can say exit... ',
             'STOP_MESSAGE': 'Until next time!',
             'ERROR_MESSAGE': "<say-as interpret-as='interjection'>Uh oh!</say-as> Something went wrong.",
         }
