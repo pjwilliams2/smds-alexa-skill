@@ -81,7 +81,6 @@ function loadTweets(){
             return getAsync.call(client, 'statuses/user_timeline', q)
                 .then((tweets) => {
                     console.log('Number of tweets: ' + tweets.length);
-                    //console.log('Tweet text: ' + tweets[Math.round(tweets.length * Math.random())].text);
         
                     _.forEach(tweets, (tweet) => {
                         languageStrings['en-US'].translation.tweets.push(tweet.text);
@@ -89,7 +88,7 @@ function loadTweets(){
         
                     if(process.env.NODE_ENV !== 'prod'){
                         console.log('Tweets length: ' + languageStrings['en-US'].translation.tweets.length);
-                        console.log('Random tweet: ' + languageStrings['en-US'].translation.tweets[33]);
+                        console.log('Sample tweet: ' + languageStrings['en-US'].translation.tweets[33]);
                     }
                 });
         });
