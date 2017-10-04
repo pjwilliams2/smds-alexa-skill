@@ -72,7 +72,7 @@ const handlers = {
 }
 
 let tweetsAreLoaded = false;
-// exports.handler = function(event, context, callback) {
+exports.handler = function(event, context, callback) {
     function executeAlexa(){
         let alexa = Alexa.handler(event, context);
         alexa.APP_ID = APP_ID;
@@ -95,7 +95,7 @@ let tweetsAreLoaded = false;
             console.log(`Error retrieving tweets: ${err.message}`);
         });
     }
-// };
+};
 
 
 
