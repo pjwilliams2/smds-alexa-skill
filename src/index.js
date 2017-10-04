@@ -22,7 +22,6 @@ const languageStrings = {
             'HELP_MESSAGE': 'You can say tell me shit my dad says or you can say exit... ',
             'STOP_MESSAGE': 'Until next time!',
             'ERROR_MESSAGE': "<say-as interpret-as='interjection'>Uh oh!</say-as> Something went wrong.",
-            'SKILL_NAME': 'Shit My Dad Says'
         }
     }
 };
@@ -42,7 +41,7 @@ const handlers = {
         const outputSpeech = this.t('TWEET_MESSAGE') + quote + '. Would you like to hear another?';
         const repromptSpeech = 'Say yes for another quote, say no to exit';
 
-        this.emit(':askWithCard', outputSpeech, repromptSpeech, this.t('SKILL_NAME'), quote);
+        this.emit(':ask', outputSpeech, repromptSpeech);
     },
     'AMAZON.YesIntent': function(){
         this.emit('ReadQuote');
