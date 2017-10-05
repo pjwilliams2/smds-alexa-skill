@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# archive file for uploading to aws lambda
+archive.zip

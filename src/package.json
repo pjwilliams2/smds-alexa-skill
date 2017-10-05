@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Lambda function for Alexa Skill: Shit My Dad Says. Alexa skill for reading quotes from the @ShitMyDadSays Twitter account timeline",
   "main": "index.js",
+  "scripts": {
+    "zip": "zip -u -v -r -X archive.zip .env *"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pjwilliams2/smds-alexa-skill.git"
